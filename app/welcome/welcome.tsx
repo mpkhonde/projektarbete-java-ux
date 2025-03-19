@@ -1,9 +1,3 @@
-
-
 export function Welcome() {
-  return (
-    
-  );
+  return <div></div>;
 }
-
-    
