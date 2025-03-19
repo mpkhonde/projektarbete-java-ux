@@ -1,8 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Pragati+Narrow:wght@400;700&display=swap');
+
+/*GENERAL*/
 body {
+  font-family: 'Pragati Narrow', sans-serif;
   display: flex;
   justify-content: center;
   background-color: #019D67;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+
+}
+
+/*NO SPEND WEEK-PAGE*/
 
 .buttoncontainer {
   display: flex;
@@ -15,5 +29,6 @@ body {
 }
 
 .nospendweek {
+  font-size: 1.5rem;
   width: 20rem;
 }
