@@ -1,0 +1,31 @@
+.btn {
+    border-radius: 0.5rem;
+    color: white;
+    box-sizing: border-box;
+    padding: 1rem 2rem;
+    border: 1px solid black;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.flexContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnTextColor {
+    color: black;
+    font-size: 1rem;
+}
