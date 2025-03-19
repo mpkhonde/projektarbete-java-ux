@@ -1,60 +1,21 @@
 body {
-  background: rgba(255, 255, 255, 0);
-  margin: 0;
-  font-family: "Pragati Narrow", sans-serif;
+  display: flex;
+  justify-content: center;
+  background-color: blueviolet;
 }
 
-.inkomst, .utgift, .mars, .belopp, .text {
-  font-family: "Pragati Narrow", sans-serif;
-  font-weight: 400;
-  word-wrap: break-word;
+.buttoncontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  height: 30rem;
+  background-color: aqua;
+  margin: 10px, 10px;
 }
 
-.inkomst, .utgift {
-  color: #070707;
-  font-size: 22px;
-}
+.nospendweek {
 
-.mars, .belopp {
-  color: black;
-  font-size: 52px;
-}
+  width: 20rem;
 
-.text {
-  color: black;
-  font-size: 18px;
-}
-
-.container {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-}
-
-.box {
-  width: 275px;
-  height: 122px;
-  background: #FFF5FA;
-  border-radius: 10px;
-  position: absolute;
-}
-
-.button {
-  width: 238px;
-  height: 53px;
-  background: #FFF5FA;
-  border-radius: 18px;
-  position: absolute;
-  text-align: center;
-  line-height: 53px;
-  font-size: 22px;
-  font-weight: 400;
-}
-
-.green-box {
-  width: 393px;
-  height: 801px;
-  position: absolute;
-  background: #9d9d9d;
 }
