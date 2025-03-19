@@ -4,7 +4,7 @@ body {
   background-color: #019D67;
 }
 
-.buttoncontainer {
+.button-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,6 +14,8 @@ body {
   border-radius: 1rem;
 }
 
-.nospendweek {
+
+
+.no-spend-week {
   width: 20rem;
 }
