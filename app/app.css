@@ -6,7 +6,13 @@ body {
   display: flex;
   justify-content: center;
   background-color: #019D67;
+  margin: 0;
 }
+
+main {
+  padding-top: 80px; /* Skjuter ner innehållet så det inte hamnar bakom headern */
+}
+
 
 /*NO SPEND WEEK-PAGE*/
 
@@ -18,8 +24,10 @@ body {
   height: 30rem;
   background-color: white;
   border-radius: 1rem;
+  margin-bottom: 5rem;
 }
 
-.nospendweek {
+.no-spend-week {
+  font-size: 1.5rem;
   width: 20rem;
 }
