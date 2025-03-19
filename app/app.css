@@ -1,7 +1,7 @@
 body {
   display: flex;
   justify-content: center;
-  background-color: blueviolet;
+  background-color: #019D67;
 }
 
 .buttoncontainer {
@@ -10,12 +10,10 @@ body {
   align-items: center;
   width: 20rem;
   height: 30rem;
-  background-color: aqua;
-  margin: 10px, 10px;
+  background-color: white;
+  border-radius: 1rem;
 }
 
 .nospendweek {
-
   width: 20rem;
-
 }
