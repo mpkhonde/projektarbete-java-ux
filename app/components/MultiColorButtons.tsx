@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useColors } from "./ColorSetter"; // Import color state management
 import { CustomButton } from "./CustomButton"; // Import button component
 
