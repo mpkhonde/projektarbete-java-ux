@@ -1,10 +1,13 @@
 
+
 import { useColors } from "./ColorSetter"; // Import color state management
 import { CustomButton } from "./CustomButton"; // Import button component
+
 
 const weekDays = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
 
 export function MultiColorButtons() {
+    
     const { colors, changeColor } = useColors(weekDays.length); // Set state for 7 buttons
 
     return (
