@@ -6,8 +6,7 @@ export function Main() {
             <div>
                 <h2>Mars</h2>
                 <div className={styles.monthlyContainer}>
-                    <p>Den här månaden har du tjänat</p>
-                    <p>15000 kr</p>
+                    <p>Den här månaden har du tjänat <br/> 15000kr</p>
                 </div>
             </div>
 

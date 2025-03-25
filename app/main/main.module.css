@@ -1,9 +1,7 @@
 .monthlyContainer {
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 20rem;
-    height: 32rem;
+    height: 10rem;
     background-color: white;
     border-radius: 1rem;
     margin-bottom: 5rem;
