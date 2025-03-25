@@ -1,16 +1,16 @@
-import {Link} from "react-router";
-import {MultiColorButtons} from "~/components/MultiColorButtons";
+import styles from "./main.module.css";
 
 export function Main() {
     return (
         <main>
-            <div className="no-spend-week">
-                <h2>Hello world</h2>
-                <div className="monthly-container">
+            <div>
+                <h2>Mars</h2>
+                <div className={styles.monthlyContainer}>
                     <p>Den här månaden har du tjänat</p>
                     <p>15000 kr</p>
                 </div>
             </div>
+
             <div className="button-container">
 
             </div>

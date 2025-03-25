@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { CustomButton } from "./CustomButton"; // Import button component
 import { saveToLocalStorage, loadFromLocalStorage } from "./utilities/localStorageUtils";
+import {Link} from "react-router";
 
 const weekDays = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
 
@@ -37,6 +38,14 @@ export function MultiColorButtons() {
           style={{ backgroundColor: colors[index] }}
         />
       ))}
+
+        <Link to={"/main"}>
+        <CustomButton
+            buttonText={"Spara"}
+            onClick={() => alert("Sparat")}
+
+        />
+        </Link>
     </div>
   );
 }
