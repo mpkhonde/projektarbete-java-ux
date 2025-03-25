@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CustomButton } from "./CustomButton"; // Import button component
-import { saveToLocalStorage, loadFromLocalStorage } from "./localStorageUtils";
+import { saveToLocalStorage, loadFromLocalStorage } from "./utilities/localStorageUtils";
 
 const weekDays = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
 
