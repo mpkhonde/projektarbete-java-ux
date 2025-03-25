@@ -1,7 +1,8 @@
 
 
 import { useColors } from "./ColorSetter"; // Import color state management
-import { CustomButton } from "./CustomButton"; // Import button component
+import { CustomButton } from "./CustomButton";
+import {Link} from "react-router"; // Import button component
 
 
 const weekDays = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
@@ -20,6 +21,13 @@ export function MultiColorButtons() {
                     style={{ backgroundColor: colors[index] }} // Set background color
                 />
             ))}
+            <Link to="/main">
+            <CustomButton
+                buttonText={"Spara"}
+                onClick={() => alert("Sparat")}
+                style={{ width: "15rem", height: "auto"}}
+            />
+            </Link>
         </div>
     );
 }
