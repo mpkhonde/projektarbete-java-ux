@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
 
-p {
+p, a {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
 }
@@ -31,7 +31,7 @@ p {
   justify-content: center;
   align-items: center;
   width: 20rem;
-  height: 30rem;
+  height: 32rem;
   background-color: white;
   border-radius: 1rem;
   margin-bottom: 5rem;

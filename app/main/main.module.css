@@ -1,0 +1,13 @@
+.monthlyContainer {
+    display: flex;
+    width: 20rem;
+    height: 10rem;
+    background-color: white;
+    border-radius: 1rem;
+    margin-bottom: 5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    width: 20rem;
+}

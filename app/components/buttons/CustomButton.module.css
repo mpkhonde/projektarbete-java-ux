@@ -1,5 +1,6 @@
 .btn {
-    width: 15rem;
+    width: 11rem;
+    height: auto;
     border: none;
     border-radius: 1rem;
     box-sizing: border-box;
@@ -16,7 +17,7 @@
     transform: scale(0.98);
 }
 
-.flexContainer {
+.buttonContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
