@@ -1,7 +1,7 @@
 import styles from "./Header.module.css";
 import logo from "../../images/balanza_logo_2.png"
 import { useEffect, useState } from "react";
-import NavBar from "../navbar/navBar";
+import NavBar from "../navbar/NavBar";
 export function Header() {
 
   const [hasScrolled, setHasScrolled] = useState(false);

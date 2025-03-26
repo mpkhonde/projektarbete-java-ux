@@ -11,9 +11,8 @@ export default function NavBar() {
       {/* Desktop Navbar */}
       <div className="nav-desktop">
         <ul className="nav-links">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
+          <li><Link to="/">Utmaningar</Link></li>
+          <li><Link to="/savingtips">Spartips</Link></li>
         </ul>
       </div>
 
@@ -26,9 +25,8 @@ export default function NavBar() {
 
       {/* Mobile Menu */}
       <ul className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-        <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
-        <li><Link to="/about" onClick={() => setMenuOpen(false)}>About</Link></li>
-        <li><Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link></li>
+        <li><Link to="/" onClick={() => setMenuOpen(false)}>Utmaningar</Link></li>
+        <li><Link to="/savingtips" onClick={() => setMenuOpen(false)}>Spartips</Link></li>
       </ul>
     </nav>
   );
