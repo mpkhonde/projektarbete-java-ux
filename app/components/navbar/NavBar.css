@@ -1,0 +1,82 @@
+/* Grundläggande styling */
+.navbar {
+  display: flex;
+  justify-content: flex-end; /* Håller navbaren till höger */
+  align-items: center;
+  width: auto; /* Låter navbaren justera sin bredd beroende på innehållet */
+  margin-right: 2rem;
+}
+
+/* Desktop-nav */
+.nav-desktop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 3rem;
+}
+
+.nav-links li a {
+  color: black;
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 2px;
+}
+
+/* Mobil-nav (gömd som standard) */
+.nav-mobile {
+  display: none;
+}
+
+.hamburger {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: black;
+  cursor: pointer;
+}
+
+/* Mobile menu (gömd som standard) */
+.mobile-menu {
+  display: none;
+  list-style: none;
+  position: fixed; /* Fäst menyn på skärmen */
+  top: 80px; /* Starta menyn direkt under headern */
+  right: 0; /* Skjut ut från höger */
+  width: 250px; /* Bredden på menyn */
+  height: calc(100vh - 80px); /* Menyn tar upp hela höjden utom headern */
+  background-color: #019D67; /* Bakgrundsfärg för menyn */
+  padding: 1rem;
+  margin: 0;
+  transform: translateX(100%); /* Initial position utanför skärmen */
+  transition: transform 0.3s ease-in-out; /* Animering av att menyn glider in */
+}
+
+.mobile-menu a {
+  color: black; /* Sätt färgen på länkarna */
+  text-decoration: none; /* Tar bort understrykning */
+  padding: 1rem; /* Lägg till padding för att göra länkarna klickbara */
+  display: block; /* Gör länkarna block-element för att lättare hantera klick */
+  border-radius: 5px; /* Lägger till rundade hörn om du vill */
+}
+
+.mobile-menu.open {
+  display: block;
+  transform: translateX(0); /* När menyn är öppen, flyttas den till synlig position */
+}
+
+/* Media Query: Visa hamburgermeny på små skärmar */
+@media (max-width: 768px) {
+  .nav-desktop {
+    display: none;
+  }
+  .nav-mobile {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}

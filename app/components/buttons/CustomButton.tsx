@@ -1,4 +1,4 @@
-import styles from "~/components/CustomButton.module.css";
+import styles from "~/components/buttons/CustomButton.module.css";
 import React from "react";
 
 interface CustomButtonProps {
