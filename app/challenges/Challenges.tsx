@@ -1,6 +1,6 @@
 import { MultiColorButtons } from "~/components/buttons/MultiColorButtons";
 
-export function Welcome() {
+export function Challenges() {
   return (
     <main>
       <div className="no-spend-week">
@@ -11,9 +11,9 @@ export function Welcome() {
           <br /> 🔴 = Spenderat
         </p>
       </div>
-      <div className="button-container">
+      
         <MultiColorButtons />
-      </div>
+      
     </main>
   );
 }

@@ -1,5 +1,5 @@
 import styles from "./Header.module.css";
-import logo from "../../images/balanza_logo_2.png";
+import logo from "../../images/balanza_logo_3.svg";
 import { useEffect, useState } from "react";
 import NavBar from "../navbar/NavBar";
 export function Header() {
@@ -18,14 +18,14 @@ export function Header() {
     <header
       className={`${styles.header} ${hasScrolled ? styles.scrolled : ""}`}
     >
+      <NavBar />
+
       <img
         src={logo}
         alt="Bild på en logotyp för Balanza"
         height="80px"
         width="auto"
       />
-
-      <NavBar />
     </header>
   );
 }

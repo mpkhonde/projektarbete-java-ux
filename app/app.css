@@ -5,7 +5,7 @@
 body {
   display: flex;
   justify-content: center;
-  background-color: #019D67;
+  background-color: #F1FAFF;
   margin: 0;
 }
 
@@ -14,30 +14,39 @@ main {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Bricolage Grotesque", sans-serif;
+  font-family: "Bricolage Grotesque";
   font-weight: 600;
+  color: #12263A;
 }
 
 p, a {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto";
   font-weight: 300;
+  color: #12263A;
 }
 
 
 /*NO SPEND WEEK-PAGE*/
 
-.button-container {
+.no-spend-week {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 20rem;
-  height: 32rem;
-  background-color: white;
-  border-radius: 1rem;
-  margin-bottom: 5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  width: 19.5rem;
+  margin-bottom: 3rem;
 }
 
-.no-spend-week {
-  font-size: 1.5rem;
-  width: 20rem;
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 19.5rem;
+  height: 32rem;
+  margin-bottom: 5rem;
+  gap: 16px;
 }
+
+
