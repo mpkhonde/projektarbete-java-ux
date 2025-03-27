@@ -1,30 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Pragati+Narrow:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&family=Roboto:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Pragati+Narrow:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&family=Roboto:wght@300&display=swap");
 
 /*GENERAL*/
-body {
+body,
+html {
   display: flex;
   justify-content: center;
-  background-color: #F1FAFF;
+  background-color: #f1faff;
   margin: 0;
+  padding: 0;
 }
 
 main {
   padding-top: 80px; /* Skjuter ner innehållet så det inte hamnar bakom headern */
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Bricolage Grotesque";
   font-weight: 600;
-  color: #12263A;
+  color: #12263a;
 }
 
-p, a {
+p,
+a {
   font-family: "Roboto";
   font-weight: 300;
-  color: #12263A;
+  color: #12263a;
 }
-
 
 /*NO SPEND WEEK-PAGE*/
 
@@ -48,5 +55,3 @@ p, a {
   margin-bottom: 5rem;
   gap: 16px;
 }
-
-

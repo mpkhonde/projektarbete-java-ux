@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import type { SavingTip } from "types/SavingTip";
+import { useEffect, useState } from "react"
+import type { SavingTip } from "types/SavingTip"
+import { CustomCard } from "~/components/cards/CustomCard"
 
 export function SavingTips() {
   const [tipList, setTipList] = useState<SavingTip[]>([
@@ -8,29 +9,33 @@ export function SavingTips() {
       title: "",
       description: "",
     },
-  ]);
+  ])
 
-  useEffect( () => {
-    console.log("TESTING OUT ASYNC FUNCTION");
+  useEffect(() => {
+    console.log("TESTING OUT ASYNC FUNCTION")
 
     async function fetchData() {
+      const result = await fetch(
+        "https://balanza-savingtips-api.onrender.com/api/savingtips"
+      )
+      const tips: SavingTip[] = await result.json()
+      setTipList(tips)
 
-        const result = await fetch("https://balanza-savingtips-api.onrender.com/api/savingtips")
-        const tips: SavingTip[] = await result.json()
-        setTipList(tips)
-
-        console.log(tips[0].title)
+      console.log(tips)
     }
 
     fetchData()
-
+    console.log(tipList)
   }, [])
 
   return (
     <main>
-      <div>
-        <p>{tipList[0].title}</p>
+      <div className="saving-tips-container">
+        <CustomCard
+          tipTitle={tipList[0].title}
+          description={tipList[0].description}
+        />
       </div>
     </main>
-  );
+  )
 }
