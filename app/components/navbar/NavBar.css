@@ -16,14 +16,24 @@
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .nav-links li a {
-  color: black;
+  color: #12263A;
   text-decoration: none;
   padding: 1rem;
   border-radius: 2px;
+}
+
+.nav-links li a:hover {
+  background-color: #12263A;
+  color: white;
+}
+
+.nav-links li a.active {
+  background-color: #12263A;
+  color: white;
 }
 
 /* Mobil-nav (gömd som standard) */
@@ -62,13 +72,19 @@
   border-radius: 5px; /* Lägger till rundade hörn om du vill */
 }
 
+.mobile-menu a.active {
+  background-color: #12263A;
+  color: white;
+}
+
 .mobile-menu.open {
   display: block;
   transform: translateX(0); /* När menyn är öppen, flyttas den till synlig position */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Media Query: Visa hamburgermeny på små skärmar */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .nav-desktop {
     display: none;
   }

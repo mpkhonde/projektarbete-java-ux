@@ -33,25 +33,4 @@ a {
   color: #12263a;
 }
 
-/*NO SPEND WEEK-PAGE*/
 
-.no-spend-week {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  font-size: 1.5rem;
-  width: 19.5rem;
-  margin-bottom: 3rem;
-}
-
-.button-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 19.5rem;
-  height: 32rem;
-  margin-bottom: 5rem;
-  gap: 16px;
-}

@@ -1,18 +1,45 @@
-import { useState } from "react";
-import { Link } from "react-router";
-import "./NavBar.css"
-
+import { useState, useEffect, useRef } from "react";
+import "./NavBar.css";
+import { NavLink } from "react-router";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLUListElement>(null);
+
+  // Stäng menyn vid klick utanför (fungerar både för mus och touch)
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent | TouchEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    }
+
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [menuOpen]);
 
   return (
     <nav className="navbar">
       {/* Desktop Navbar */}
       <div className="nav-desktop">
         <ul className="nav-links">
-          <li><Link to="/">Utmaningar</Link></li>
-          <li><Link to="/savingtips">Spartips</Link></li>
+          <li>
+            <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+              Utmaningar
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/savingtips" className={({ isActive }) => (isActive ? "active" : "")}>
+              Spartips
+            </NavLink>
+          </li>
         </ul>
       </div>
 
@@ -24,9 +51,25 @@ export default function NavBar() {
       </div>
 
       {/* Mobile Menu */}
-      <ul className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-        <li><Link to="/" onClick={() => setMenuOpen(false)}>Utmaningar</Link></li>
-        <li><Link to="/savingtips" onClick={() => setMenuOpen(false)}>Spartips</Link></li>
+      <ul ref={menuRef} className={`mobile-menu ${menuOpen ? "open" : ""}`}>
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={() => setMenuOpen(false)}
+          >
+            Utmaningar
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/savingtips"
+            className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={() => setMenuOpen(false)}
+          >
+            Spartips
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

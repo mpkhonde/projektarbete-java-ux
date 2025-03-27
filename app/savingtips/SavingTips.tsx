@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import type { SavingTip } from "types/SavingTip"
 import { CustomCard } from "~/components/cards/CustomCard"
+import styles from "./SavingTips.module.css"
 
 export function SavingTips() {
   const [tipList, setTipList] = useState<SavingTip[]>([
@@ -30,7 +31,7 @@ export function SavingTips() {
 
   return (
     <main>
-      <div className="saving-tips-container">
+      <div className={styles.savingTipsContainer}>
         <CustomCard
           tipTitle={tipList[0].title}
           description={tipList[0].description}
