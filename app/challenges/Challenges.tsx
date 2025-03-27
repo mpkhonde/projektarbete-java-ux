@@ -11,9 +11,9 @@ export function Challenges() {
           <br /> 🔴 = Spenderat
         </p>
       </div>
-      <div className="button-container">
+      
         <MultiColorButtons />
-      </div>
+      
     </main>
   );
 }

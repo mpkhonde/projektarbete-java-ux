@@ -11,7 +11,7 @@ export function CustomButton({ buttonText, onClick,style }: CustomButtonProps) {
     return (
         <div className={styles.buttonContainer}>
             <button className={styles.btn} onClick={onClick} style={style}>
-                <p className={styles.btnTextColor}>{buttonText}</p>
+                <p className={styles.btnText}>{buttonText}</p>
             </button>
         </div>
     );

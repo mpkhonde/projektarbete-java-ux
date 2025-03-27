@@ -4,7 +4,6 @@ import {
   saveToLocalStorage,
   loadFromLocalStorage,
 } from "../utilities/localStorageUtils";
-import { Link } from "react-router";
 
 const weekDays = [
   "Måndag",
@@ -22,7 +21,7 @@ export function MultiColorButtons() {
   useEffect(() => {
     const items =
       loadFromLocalStorage("weekColors") ||
-      Array(weekDays.length).fill("#f5f5f5");
+      Array(weekDays.length).fill("#ffffff");
     setColors(items);
   }, []);
 
@@ -37,12 +36,12 @@ export function MultiColorButtons() {
     setColors((prevColors) => {
       const newColors = [...prevColors];
 
-      if (newColors[index] === "#f5f5f5") {
+      if (newColors[index] === "#ffffff") {
         newColors[index] = "#c5fcc3";
       } else if (newColors[index] === "#c5fcc3") {
         newColors[index] = "#ffa2a2";
       } else {
-        newColors[index] = "#f5f5f5";
+        newColors[index] = "#ffffff";
       }
 
       return newColors;
@@ -51,7 +50,7 @@ export function MultiColorButtons() {
   }
 
   return (
-    <div>
+    <div className="button-container">
       {weekDays.map((day, index) => (
         <CustomButton
           key={day}
@@ -60,7 +59,6 @@ export function MultiColorButtons() {
           style={{ backgroundColor: colors![index] }}
         />
       ))}
-      
     </div>
   );
 }

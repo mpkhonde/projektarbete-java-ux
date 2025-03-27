@@ -1,10 +1,9 @@
 /* Grundläggande styling */
 .navbar {
   display: flex;
-  justify-content: flex-end; /* Håller navbaren till höger */
-  align-items: center;
+  position: absolute;
+  left: 3rem;
   width: auto; /* Låter navbaren justera sin bredd beroende på innehållet */
-  margin-right: 2rem;
 }
 
 /* Desktop-nav */
@@ -36,7 +35,7 @@
   font-size: 2rem;
   background: none;
   border: none;
-  color: black;
+  color: #12263A;
   cursor: pointer;
 }
 
@@ -46,10 +45,10 @@
   list-style: none;
   position: fixed; /* Fäst menyn på skärmen */
   top: 80px; /* Starta menyn direkt under headern */
-  right: 0; /* Skjut ut från höger */
+  left: 0; /* Skjut ut från vänster */
   width: 250px; /* Bredden på menyn */
   height: calc(100vh - 80px); /* Menyn tar upp hela höjden utom headern */
-  background-color: #019D67; /* Bakgrundsfärg för menyn */
+  background-color: #F1FAFF; /* Bakgrundsfärg för menyn */
   padding: 1rem;
   margin: 0;
   transform: translateX(100%); /* Initial position utanför skärmen */
@@ -57,7 +56,6 @@
 }
 
 .mobile-menu a {
-  color: black; /* Sätt färgen på länkarna */
   text-decoration: none; /* Tar bort understrykning */
   padding: 1rem; /* Lägg till padding för att göra länkarna klickbara */
   display: block; /* Gör länkarna block-element för att lättare hantera klick */

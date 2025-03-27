@@ -28,7 +28,9 @@ export function SavingTips() {
 
   return (
     <main>
-      <div></div>
+      <div>
+        <p>{tipList[0].title}</p>
+      </div>
     </main>
   );
 }
