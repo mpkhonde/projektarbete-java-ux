@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { CustomButton } from "./CustomButton"; // Import button component
+import styles from "~/components/buttons/MultiColorButtons.module.css";
 import {
   saveToLocalStorage,
   loadFromLocalStorage,
@@ -50,7 +51,7 @@ export function MultiColorButtons() {
   }
 
   return (
-    <div className="button-container">
+    <div className={styles.multiColorContainer}>
       {weekDays.map((day, index) => (
         <CustomButton
           key={day}
