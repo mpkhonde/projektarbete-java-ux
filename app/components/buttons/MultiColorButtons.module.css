@@ -1,0 +1,10 @@
+.multiColorContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 19.5rem;
+    height: 32rem;
+    gap: 16px;
+    margin-bottom: 5rem;
+  }
