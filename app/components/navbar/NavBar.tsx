@@ -5,11 +5,17 @@ import { NavLink } from "react-router";
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLUListElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   // Stäng menyn vid klick utanför (fungerar både för mus och touch)
   useEffect(() => {
     function handleClickOutside(event: MouseEvent | TouchEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      if (
+        menuRef.current && 
+        !menuRef.current.contains(event.target as Node) &&
+        buttonRef.current && 
+        !buttonRef.current.contains(event.target as Node)
+      ) {
         setMenuOpen(false);
       }
     }
@@ -45,7 +51,11 @@ export default function NavBar() {
 
       {/* Mobile Hamburger Menu */}
       <div className="nav-mobile">
-        <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+        <button
+          ref={buttonRef}
+          className="hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
           ☰ {/* Hamburgersymbol */}
         </button>
       </div>
