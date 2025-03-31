@@ -1,15 +1,11 @@
 import styles from "~/components/cards/CustomCard.module.css"
+import type { SavingTip } from "types/SavingTip"
 
-interface CustomCardProps {
-  tipTitle: string
-  description: string
-}
-
-export function CustomCard({ tipTitle, description }: CustomCardProps) {
+export function CustomCard(props: SavingTip) {
   return (
     <div className={styles.card}>
-      <h3>{tipTitle}</h3>
-      <p>{description}</p>
+      <h3>{props.title}</h3>
+      <p>{props.description}</p>
     </div>
   )
 }
