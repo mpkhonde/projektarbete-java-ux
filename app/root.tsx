@@ -10,6 +10,8 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import { Header } from "./components/header/Header";
+import ScrollToTopButton from "./components/buttons/scrollToTopButton";
+import Footer from "./footern/Footer";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -24,6 +26,7 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+// Layout används som HTML-strukturen för sidan
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -34,8 +37,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <Header/>
-        {children}
+        <Header />
+        
+        <main>{children}</main>
+
+        <Footer /> {/* 👈 Fast footer i botten */}
+
+        <ScrollToTopButton />
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -43,10 +51,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+// App returnerar Outlet – React Router renderar rätt sida här
 export default function App() {
   return <Outlet />;
 }
 
+// Fångar upp fel (404 eller andra) och visar något snyggt
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
   let details = "An unexpected error occurred.";
