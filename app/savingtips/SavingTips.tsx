@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import type { SavingTip } from "types/SavingTip"
 import { CustomCard } from "~/components/cards/CustomCard"
 import styles from "./SavingTips.module.css"
+import { getWeekday, getWeekNumber } from "~/components/utilities/dateUtils"
 
 export function SavingTips() {
   const [tipList, setTipList] = useState<SavingTip[]>([
@@ -11,31 +12,46 @@ export function SavingTips() {
       description: "",
     },
   ])
+  const [weekday, setWeekday] = useState<string>("")
+  const [weekNumber, setWeekNumber] = useState<number>(0)
 
   useEffect(() => {
-    console.log("TESTING OUT ASYNC FUNCTION")
-
     async function fetchData() {
-      const result = await fetch(
-        "https://balanza-savingtips-api.onrender.com/api/savingtips"
-      )
-      const tips: SavingTip[] = await result.json()
-      setTipList(tips)
-
-      console.log(tips)
+      try {
+        const result = await fetch(
+          "https://balanza-savingtips-api.onrender.com/api/savingtips"
+        )
+        const tips: SavingTip[] = await result.json()
+        setTipList(tips)
+      } catch (error) {
+        console.error("Fel vid hämtning:", error)
+      }
     }
 
     fetchData()
-    console.log(tipList)
+
+    setWeekday(getWeekday)
+    setWeekNumber(getWeekNumber)
+
+    console.log(weekday)
+    console.log(weekNumber)
   }, [])
+
+  console.log(weekday)
+  console.log(weekNumber)
 
   return (
     <main>
       <div className={styles.savingTipsContainer}>
-        <CustomCard
-          tipTitle={tipList[0].title}
-          description={tipList[0].description}
-        />
+        {tipList.length > 1 ? (
+          <CustomCard
+            title={tipList[13].title}
+            description={tipList[13].description}
+            id={tipList[13].id}
+          />
+        ) : (
+          <CustomCard title="Laddar..." description="" id={0} />
+        )}
       </div>
     </main>
   )
