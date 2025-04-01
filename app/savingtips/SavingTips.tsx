@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import type { SavingTip } from "types/SavingTip"
 import { CustomCard } from "~/components/cards/CustomCard"
 import styles from "./SavingTips.module.css"
+import { getWeekday, getWeekNumber } from "~/components/utilities/dateUtils"
 
 export function SavingTips() {
   const [tipList, setTipList] = useState<SavingTip[]>([
@@ -15,8 +16,6 @@ export function SavingTips() {
   const [weekNumber, setWeekNumber] = useState<number>(0)
 
   useEffect(() => {
-    console.log("TESTING OUT ASYNC FUNCTION")
-
     async function fetchData() {
       try {
         const result = await fetch(
@@ -24,42 +23,18 @@ export function SavingTips() {
         )
         const tips: SavingTip[] = await result.json()
         setTipList(tips)
-
-        console.log(tips)
       } catch (error) {
         console.error("Fel vid hämtning:", error)
       }
     }
 
     fetchData()
-    console.log(tipList)
 
-    const getDateInfo = () => {
-      const days = [
-        "Söndag",
-        "Måndag",
-        "Tisdag",
-        "Onsdag",
-        "Torsdag",
-        "Fredag",
-        "Lördag",
-      ]
-      const today = new Date()
-      const weekday = days[today.getDay()]
-      setWeekday(weekday)
+    setWeekday(getWeekday)
+    setWeekNumber(getWeekNumber)
 
-      const oneJan = new Date(today.getFullYear(), 0, 1)
-      const weekNumber = Math.ceil(
-        ((today.getTime() - oneJan.getTime()) / (1000 * 60 * 60 * 24) +
-          oneJan.getDay() +
-          1) /
-          7
-      )
-
-      setWeekNumber(weekNumber)
-    }
-
-    getDateInfo()
+    console.log(weekday)
+    console.log(weekNumber)
   }, [])
 
   console.log(weekday)
