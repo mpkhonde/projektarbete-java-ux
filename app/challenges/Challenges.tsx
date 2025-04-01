@@ -3,7 +3,7 @@ import styles from "~/challenges/Challenges.module.css"
 import { StickyButton } from "~/components/buttons/StickyButton"
 import { useState } from "react"
 import Modal from "~/components/modal/modal"
-import React from "react"
+import { ResultButton } from "~/components/buttons/ResultButton"
 
 export function Challenges() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -15,6 +15,7 @@ export function Challenges() {
       </div>
 
       <MultiColorButtons />
+      <ResultButton />
 
       <StickyButton
         buttonText={"?"}

@@ -52,18 +52,19 @@
 
 /* Mobile menu (gömd som standard) */
 .mobile-menu {
-  display: none;
   list-style: none;
-  position: fixed; /* Fäst menyn på skärmen */
-  top: 80px; /* Starta menyn direkt under headern */
-  left: 0; /* Skjut ut från vänster */
-  width: 250px; /* Bredden på menyn */
-  height: calc(100vh - 80px); /* Menyn tar upp hela höjden utom headern */
-  background-color: #f1faff; /* Bakgrundsfärg för menyn */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: #F1FAFF;
   padding: 1rem;
   margin: 0;
-  transform: translateX(100%); /* Initial position utanför skärmen */
-  transition: transform 0.3s ease-in-out; /* Animering av att menyn glider in */
+  transform: translateX(-100%); /* Startar utanför skärmen */
+  transition: transform 0.2s ease-in-out, opacity 0.5s ease-in-out;
+  opacity: 0;
+  visibility: hidden; /* Dölj menyn visuellt men behåll den i DOM */
 }
 
 .mobile-menu a {
@@ -79,10 +80,9 @@
 }
 
 .mobile-menu.open {
-  display: block;
-  transform: translateX(
-    0
-  ); /* När menyn är öppen, flyttas den till synlig position */
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0); /* När menyn är öppen, flyttas den till synlig position */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
