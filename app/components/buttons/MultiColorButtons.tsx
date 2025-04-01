@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { CustomButton } from "./CustomButton";
 import styles from "~/components/buttons/MultiColorButtons.module.css";
+import LockNavy from "../../images/lockNavy.svg";
 import {
   saveToLocalStorage,
   loadFromLocalStorage,
 } from "../utilities/localStorageUtils";
 
-const weekDays = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"];
+const weekDays = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag"];
 
 export function MultiColorButtons() {
   const [colors, setColors] = useState<string[]>([]);
@@ -45,14 +46,14 @@ export function MultiColorButtons() {
   return (
     <div className={styles.multiColorContainer}>
       {weekDays
-        .slice(1, 6) // Filtrera ut endast måndag–fredag
         .map((day, index) => (
           <CustomButton
             key={day}
             buttonText={day}
-            onClick={() => changeColor(index + 1)} // Justera indexeringen
-            style={{ backgroundColor: colors[index + 1] }}
+            onClick={() => changeColor(index)} // Justera indexeringen
+            style={{ backgroundColor: colors[index] }}
             disabled={index + 1 > todayIndex || isWeekend} // Lås framtida dagar & helger
+            icon={LockNavy} // Skicka lock-ikonen här
           />
         ))}
     </div>

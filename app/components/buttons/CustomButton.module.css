@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     width: 19.5rem;
     height: 3.9375rem;
     border: none;
@@ -10,6 +11,12 @@
     box-shadow: 0px 4px 6px 0px rgba(255, 0, 0, 0.30); 
     padding: 1rem 5.4375rem;
     cursor: pointer;
+}
+
+.btn:disabled {
+    opacity: 50%;
+    transform: none !important;
+    cursor: default;
 }
 
 .btnText {
@@ -32,6 +39,15 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 0.5rem;
+}
+
+.lockIcon {
+    display: none;
+}
+
+.btn:disabled .lockIcon {
+    display: inline-block;
+    padding-right: 1rem;
 }
 
 
