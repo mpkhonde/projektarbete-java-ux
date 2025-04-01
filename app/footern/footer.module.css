@@ -1,5 +1,7 @@
 .footer {
   width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
   background-color: #e6f3f8;
   color: #12263a;
   padding: 16px 0;

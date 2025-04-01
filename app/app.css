@@ -2,8 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&family=Roboto:wght@300&display=swap");
 
 /*GENERAL*/
+
 body,
 html {
+  width: 100%;
+  box-sizing: border-box; /* Hindrar padding från att öka bredden */
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,7 +60,3 @@ a {
   background-color: #e6f3f8;
   transform: scale(1.1);
 }
-
-
-
-

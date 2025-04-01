@@ -1,7 +1,8 @@
 /* Grundläggande styling */
 .navbar {
   display: flex;
-  position: absolute;
+  flex-wrap: wrap;
+  position: fixed;
   left: 3rem;
   width: auto; /* Låter navbaren justera sin bredd beroende på innehållet */
 }
@@ -20,19 +21,19 @@
 }
 
 .nav-links li a {
-  color: #12263A;
+  color: #12263a;
   text-decoration: none;
   padding: 1rem;
   border-radius: 2px;
 }
 
 .nav-links li a:hover {
-  background-color: #12263A;
+  background-color: #12263a;
   color: white;
 }
 
 .nav-links li a.active {
-  background-color: #12263A;
+  background-color: #12263a;
   color: white;
 }
 
@@ -45,7 +46,7 @@
   font-size: 2rem;
   background: none;
   border: none;
-  color: #12263A;
+  color: #12263a;
   cursor: pointer;
 }
 
@@ -58,7 +59,7 @@
   left: 0; /* Skjut ut från vänster */
   width: 250px; /* Bredden på menyn */
   height: calc(100vh - 80px); /* Menyn tar upp hela höjden utom headern */
-  background-color: #F1FAFF; /* Bakgrundsfärg för menyn */
+  background-color: #f1faff; /* Bakgrundsfärg för menyn */
   padding: 1rem;
   margin: 0;
   transform: translateX(100%); /* Initial position utanför skärmen */
@@ -73,13 +74,15 @@
 }
 
 .mobile-menu a.active {
-  background-color: #12263A;
+  background-color: #12263a;
   color: white;
 }
 
 .mobile-menu.open {
   display: block;
-  transform: translateX(0); /* När menyn är öppen, flyttas den till synlig position */
+  transform: translateX(
+    0
+  ); /* När menyn är öppen, flyttas den till synlig position */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
