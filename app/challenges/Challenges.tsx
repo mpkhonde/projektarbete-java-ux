@@ -1,20 +1,47 @@
 import { MultiColorButtons } from "~/components/buttons/MultiColorButtons";
 import styles from "~/challenges/Challenges.module.css";
+import {StickyButton} from "~/components/buttons/StickyButton";
+import {useState} from "react";
+import Modal from "~/components/modal/modal";
+import React from "react";
+
+
 
 export function Challenges() {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <main>
       <div className={styles.challengesContainer}>
         <h2>No spend-week</h2>
-        <p>
-          Har du spenderat något denna vecka?
-          <br /> 🟢 = Inte spenderat
-          <br /> 🔴 = Spenderat
-        </p>
+       
       </div>
       
         <MultiColorButtons />
-      
+
+      <StickyButton
+          buttonText={"?"}
+          onClick={() => setIsModalOpen(true)}
+          style={{backgroundColor:"white"}}
+      />
+
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <h2>Hur funkar det? 🤔</h2>
+        <p>För varje dag låses en ny knapp upp och du får två val - antingen har du spenderat pengar eller inte.
+          <br/>
+          <br/>
+          För icke spenderat tycker du en gång på dagens knapp vid två tryck blir knappen röd.
+          <br/>
+          <br/>
+          När du gjort hela veckan får du resultatet.
+          <br/>
+          <br/>
+          Du kan sedan gå in i resultat och se din utveckling!</p>
+      </Modal>
+
     </main>
+
+
   );
 }
