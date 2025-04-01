@@ -1,65 +1,60 @@
 import { useEffect, useState } from "react";
-import { CustomButton } from "./CustomButton"; // Import button component
+import { CustomButton } from "./CustomButton";
 import styles from "~/components/buttons/MultiColorButtons.module.css";
 import {
   saveToLocalStorage,
   loadFromLocalStorage,
 } from "../utilities/localStorageUtils";
 
-const weekDays = [
-  "Måndag",
-  "Tisdag",
-  "Onsdag",
-  "Torsdag",
-  "Fredag",
-  "Lördag",
-  "Söndag",
-];
+const weekDays = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"];
 
 export function MultiColorButtons() {
   const [colors, setColors] = useState<string[]>([]);
+  const todayIndex = new Date().getDay(); // 0 = Söndag, 6 = Lördag
+  const isWeekend = todayIndex === 0 || todayIndex === 6; // Kolla om det är helg
 
   useEffect(() => {
-    const items =
+    const storedColors =
       loadFromLocalStorage("weekColors") ||
       Array(weekDays.length).fill("#ffffff");
-    setColors(items);
+    setColors(storedColors);
   }, []);
 
-  // Save colors to localStorage whenever they change
   useEffect(() => {
     if (colors.length > 0) {
       saveToLocalStorage("weekColors", colors);
     }
-  }, [colors]); // This will save to localStorage every time colors change
+  }, [colors]);
 
   function changeColor(index: number) {
+    if (index > todayIndex || isWeekend) return; // Blockera klick om det är helg eller framtida dagar
+
     setColors((prevColors) => {
       const newColors = [...prevColors];
-
-      if (newColors[index] === "#ffffff") {
-        newColors[index] = "#c5fcc3";
-      } else if (newColors[index] === "#c5fcc3") {
-        newColors[index] = "#ffa2a2";
-      } else {
-        newColors[index] = "#ffffff";
-      }
+      newColors[index] =
+        newColors[index] === "#ffffff"
+          ? "#c5fcc3"
+          : newColors[index] === "#c5fcc3"
+          ? "#ffa2a2"
+          : "#ffffff";
 
       return newColors;
     });
-    saveToLocalStorage("weekColors", colors);
   }
 
   return (
     <div className={styles.multiColorContainer}>
-      {weekDays.map((day, index) => (
-        <CustomButton
-          key={day}
-          buttonText={day}
-          onClick={() => changeColor(index)}
-          style={{ backgroundColor: colors![index] }}
-        />
-      ))}
+      {weekDays
+        .slice(1, 6) // Filtrera ut endast måndag–fredag
+        .map((day, index) => (
+          <CustomButton
+            key={day}
+            buttonText={day}
+            onClick={() => changeColor(index + 1)} // Justera indexeringen
+            style={{ backgroundColor: colors[index + 1] }}
+            disabled={index + 1 > todayIndex || isWeekend} // Lås framtida dagar & helger
+          />
+        ))}
     </div>
   );
 }

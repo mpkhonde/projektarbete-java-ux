@@ -1,5 +1,6 @@
 import { MultiColorButtons } from "~/components/buttons/MultiColorButtons";
 import styles from "~/challenges/Challenges.module.css";
+import { ResultButton } from "~/components/buttons/ResultButton";
 
 export function Challenges() {
   return (
@@ -14,6 +15,7 @@ export function Challenges() {
       </div>
       
         <MultiColorButtons />
+        <ResultButton />
       
     </main>
   );
