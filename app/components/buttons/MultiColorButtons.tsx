@@ -17,7 +17,7 @@ export function MultiColorButtons() {
   useEffect(() => {
     const storedColors =
       loadFromLocalStorage("weekColors") ||
-      Array(weekDays.length).fill("#ffffff");
+      Array(weekDays.length).fill("#fffdf6");
     setColors(storedColors);
   }, []);
 
@@ -33,11 +33,11 @@ export function MultiColorButtons() {
     setColors((prevColors) => {
       const newColors = [...prevColors];
       newColors[index] =
-        newColors[index] === "#ffffff"
+        newColors[index] === "#fffdf6"
           ? "#c5fcc3"
           : newColors[index] === "#c5fcc3"
           ? "#ffa2a2"
-          : "#ffffff";
+          : "#fffdf6";
 
       return newColors;
     });

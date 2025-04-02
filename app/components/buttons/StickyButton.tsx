@@ -4,14 +4,14 @@ import React from "react";
 interface StickyButtonProps {
     buttonText: string
     onClick: () => void
-    style?: React.CSSProperties;
+    
 }
 
-export function StickyButton({ buttonText, onClick,style }: StickyButtonProps) {
+export function StickyButton({ buttonText, onClick }: StickyButtonProps) {
 
     return (
         <div className={styles.buttonContainer}>
-            <button className={styles.btn} onClick={onClick} style={style}>
+            <button className={styles.btn} onClick={onClick} >
                 <p className={styles.btnText}>{buttonText}</p>
             </button>
         </div>

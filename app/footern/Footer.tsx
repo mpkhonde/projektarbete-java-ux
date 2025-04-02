@@ -22,9 +22,6 @@ const Footer = () => {
         <p className={styles["footer-updated"]}>
           🕒 Senast uppdaterad: {formattedDate} kl. {formattedTime}
         </p>
-        <nav className={styles["footer-links"]}>
-          <a href="#">🔒 Integritetspolicy</a>
-        </nav>
       </div>
     </footer>
   );

@@ -2,7 +2,7 @@
   background-color: #12263A;
   border-radius: 0px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
-  margin-bottom: 2rem;
+  width: 13.5rem;
 }
 
 .resultbutton p {
@@ -13,6 +13,7 @@
   color: white !important;
   border-radius: 0px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+  width: 13.5rem;
 }
 
 .resultButton:disabled p {

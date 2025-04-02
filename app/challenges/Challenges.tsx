@@ -20,7 +20,6 @@ export function Challenges() {
       <StickyButton
         buttonText={"?"}
         onClick={() => setIsModalOpen(true)}
-        style={{ backgroundColor: "white" }}
       />
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>

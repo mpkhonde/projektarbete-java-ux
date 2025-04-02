@@ -39,7 +39,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <Header />
         
+        <div className="background-ellipse"></div>
+        <div className="background-ellipse2"></div>
+        
         <main>{children}</main>
+        
 
         <Footer /> {/* 👈 Fast footer i botten */}
 

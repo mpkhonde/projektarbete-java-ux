@@ -65,6 +65,7 @@
   transition: transform 0.2s ease-in-out, opacity 0.5s ease-in-out;
   opacity: 0;
   visibility: hidden; /* Dölj menyn visuellt men behåll den i DOM */
+  z-index: 100;
 }
 
 .mobile-menu a {
@@ -80,10 +81,11 @@
 }
 
 .mobile-menu.open {
-  opacity: 1;
+  opacity: 100%;
   visibility: visible;
   transform: translateX(0); /* När menyn är öppen, flyttas den till synlig position */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 100;
 }
 
 /* Media Query: Visa hamburgermeny på små skärmar */
