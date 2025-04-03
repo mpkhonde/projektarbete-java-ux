@@ -3,7 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   position: fixed;
-  left: 3rem;
+  left: 2rem;
   width: auto; /* Låter navbaren justera sin bredd beroende på innehållet */
 }
 
