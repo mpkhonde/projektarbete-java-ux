@@ -58,7 +58,7 @@
   left: 0;
   width: 250px;
   height: 100vh;
-  background-color: #F1FAFF;
+  background-color: #f1faff;
   padding: 1rem;
   margin: 0;
   transform: translateX(-100%); /* Startar utanför skärmen */
@@ -83,7 +83,9 @@
 .mobile-menu.open {
   opacity: 100%;
   visibility: visible;
-  transform: translateX(0); /* När menyn är öppen, flyttas den till synlig position */
+  transform: translateX(
+    0
+  ); /* När menyn är öppen, flyttas den till synlig position */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
   z-index: 100;
 }

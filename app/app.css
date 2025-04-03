@@ -23,7 +23,7 @@ html {
   left: 40%;
   width: 23.73813rem;
   height: 23.73813rem;
-  background: linear-gradient(180deg, #ff8400 39.82%,#ff0000 100%);
+  background: linear-gradient(180deg, #ff8400 39.82%, #ff0000 100%);
   box-shadow: 0px 0px 250px 75px #fff inset;
   filter: blur(45px);
   transform: rotate(16.759deg);
@@ -38,7 +38,7 @@ html {
   left: 30%;
   width: 23.73813rem;
   height: 23.73813rem;
-  background: linear-gradient(180deg, #ff8400 39.82%,#ff0000 100%);
+  background: linear-gradient(180deg, #ff8400 39.82%, #ff0000 100%);
   box-shadow: 0px 0px 250px 75px #fff inset;
   filter: blur(45px);
   transform: rotate(16.759deg);
@@ -47,16 +47,34 @@ html {
   z-index: 1;
 }
 
-@media (max-width: 1000px) {
- .background-ellipse {
-  top: 25%;
-  left: 30%;
- }
+@media (max-width: 1024px) {
+  .background-ellipse {
+    top: 25%;
+    left: 30%;
+  }
 
- .background-ellipse2 {
-  top: 60%;
-  left: 20%;
- }
+  .background-ellipse2 {
+    top: 55%;
+    left: 20%;
+  }
+}
+
+@media (max-width: 780px) {
+  .background-ellipse {
+    top: 20%;
+    left: 25%;
+    width: 16rem;
+    height: 16rem;
+    box-shadow: 0px 0px 125px 37.5px #fff inset;
+  }
+
+  .background-ellipse2 {
+    top: 55%;
+    left: 15%;
+    width: 16.5rem;
+    height: 16.5rem;
+    box-shadow: 0px 0px 125px 37.5px #fff inset;
+  }
 }
 
 main {
@@ -81,6 +99,3 @@ a {
   font-weight: 300;
   color: #12263a;
 }
-
-
-
