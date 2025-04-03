@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import type { SavingTip } from "types/SavingTip"
 import { CustomCard } from "~/components/cards/CustomCard"
 import styles from "./SavingTips.module.css"
-import { getWeekday, getWeekNumber } from "~/components/utilities/dateUtils"
+import { getWeekNumber } from "~/components/utilities/dateUtils"
 
 export function SavingTips() {
   const [tipList, setTipList] = useState<SavingTip[]>([
@@ -12,8 +12,18 @@ export function SavingTips() {
       description: "",
     },
   ])
-  const [weekday, setWeekday] = useState<string>("")
+
   const [weekNumber, setWeekNumber] = useState<number>(0)
+  const [tipIndex, setTipIndex] = useState<number>(0)
+
+  function getTodaysTip(): number {
+    setWeekNumber(getWeekNumber)
+    const today = new Date()
+    const weekday = today.getDay() // ger ett nummer 0-6 beroende på vilken veckodag det är, 0 = söndag, 1 = måndag osv
+
+    const isEvenWeek = weekNumber % 2 === 0
+    return isEvenWeek ? weekday : weekday + 7
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -30,24 +40,20 @@ export function SavingTips() {
 
     fetchData()
 
-    setWeekday(getWeekday)
-    setWeekNumber(getWeekNumber)
-
-    console.log(weekday)
-    console.log(weekNumber)
+    setTipIndex(getTodaysTip())
   }, [])
-
-  console.log(weekday)
-  console.log(weekNumber)
 
   return (
     <main>
       <div className={styles.savingTipsContainer}>
         {tipList.length > 1 ? (
           <CustomCard
-            title={tipList[13].title}
-            description={tipList[13].description}
-            id={tipList[13].id}
+            // id={todaysTip.id}
+            // title={todaysTip.title}
+            // description={todaysTip.description}
+            title={tipList[tipIndex].title}
+            description={tipList[tipIndex].description}
+            id={tipList[tipIndex].id}
           />
         ) : (
           <CustomCard title="Laddar..." description="" id={0} />

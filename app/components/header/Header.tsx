@@ -1,5 +1,5 @@
 import styles from "./Header.module.css"
-import logo from "../../images/balanza_logo_3.svg"
+import logo from "../../images/BalanzaRATT.svg"
 import { useEffect, useState } from "react"
 import NavBar from "../navbar/NavBar"
 export function Header() {
