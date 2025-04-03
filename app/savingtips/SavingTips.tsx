@@ -56,7 +56,7 @@ export function SavingTips() {
             id={tipList[tipIndex].id}
           />
         ) : (
-          <CustomCard title="Laddar..." description="" id={0} />
+          <CustomCard title="Laddar tips..." description="" id={0} />
         )}
       </div>
     </main>
