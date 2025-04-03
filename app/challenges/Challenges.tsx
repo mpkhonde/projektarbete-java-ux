@@ -1,12 +1,26 @@
-import { MultiColorButtons } from "~/components/buttons/MultiColorButtons"
-import styles from "~/challenges/Challenges.module.css"
-import { StickyButton } from "~/components/buttons/StickyButton"
-import { useState } from "react"
-import Modal from "~/components/modal/modal"
-import { ResultButton } from "~/components/buttons/ResultButton"
+import { MultiColorButtons } from "~/components/buttons/MultiColorButtons";
+import styles from "~/challenges/Challenges.module.css";
+import { StickyButton } from "~/components/buttons/StickyButton";
+import { useState } from "react";
+import Modal from "~/components/modal/modal";
+import { ResultButton } from "~/components/buttons/ResultButton";
 
 export function Challenges() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState<"info" | "result">("info");
+  const [completedDays, setCompletedDays] = useState<number | null>(null);
+  const [totalDays, setTotalDays] = useState<number | null>(null);
+
+  const handleOpenModal = (
+    type: "info" | "result",
+    completed: number,
+    total: number
+  ) => {
+    setModalContent(type);
+    setCompletedDays(completed);
+    setTotalDays(total);
+    setIsModalOpen(true);
+  };
 
   return (
     <main>
@@ -15,33 +29,45 @@ export function Challenges() {
       </div>
 
       <MultiColorButtons />
-      <ResultButton />
-
+      <ResultButton
+        onClick={(completedDays, totalDays) =>
+          handleOpenModal("result", completedDays, totalDays)
+        }
+      />
       <StickyButton
         buttonText={"?"}
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => handleOpenModal("info", 0, 0)}
       />
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <h2>Hur funkar det? 🤔</h2>
-        <p>
-          För varje dag låses en ny knapp upp och du får två val - antingen har
-          du spenderat pengar eller inte.
-          <br />
-          <br />
-          <li>
-            För icke spenderat trycker du en gång på dagens knapp så att den
-            blir grön 🟢
-          </li>
-          <li>Vid två tryck blir knappen röd 🔴</li>
-          <br />
-          <br />
-          När du gjort hela veckan får du resultatet.
-          <br />
-          <br />
-          Du kan sedan gå in i resultat och se din utveckling!
-        </p>
+        {modalContent === "info" ? (
+          <>
+            <h2>Hur funkar det? 🤔</h2>
+            <p>
+              För varje dag låses en ny knapp upp och du får två val - antingen
+              har du spenderat pengar eller inte.
+            </p>
+            <p>
+              - För icke spenderat trycker du en gång på dagens knapp så att den
+              blir GRÖN 🟢
+            </p>
+            <p>- Vid två tryck blir knappen RÖD 🔴</p>
+            <p>När du gjort hela veckan får du resultatet.</p>
+            <p>Du kan sedan gå in i resultat och se din utveckling!</p>
+          </>
+        ) : (
+          <>
+            <h2>Ditt resultat 📊</h2>
+            {completedDays === 0 ? (
+              <p>Bättre lycka nästa gång! 😞</p>
+            ) : (
+              <p>
+                Du klarade {completedDays}/{totalDays} dagar, bra jobbat!
+              </p>
+            )}
+          </>
+        )}
       </Modal>
     </main>
-  )
+  );
 }
