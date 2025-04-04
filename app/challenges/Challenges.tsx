@@ -4,6 +4,7 @@ import { StickyButton } from "~/components/buttons/StickyButton"
 import { useState } from "react"
 import Modal from "~/components/modal/modal"
 import { ResultButton } from "~/components/buttons/ResultButton"
+import { getWeekNumber } from "~/components/utilities/dateUtils"
 
 export function Challenges() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -22,9 +23,12 @@ export function Challenges() {
     setIsModalOpen(true)
   }
 
+  const weekNumber = getWeekNumber()
+
   return (
     <main>
       <div className={styles.challengesContainer}>
+        <h4>Vecka {weekNumber}</h4>
         <h2>No spend-week</h2>
 
         <MultiColorButtons />

@@ -10,3 +10,9 @@
 .challengesContainer h2 {
   margin: 0;
 }
+
+.challengesContainer h4 {
+  color: #787878;
+  font-weight: normal;
+  margin: 0;
+}
