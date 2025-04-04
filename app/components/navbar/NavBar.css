@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   position: fixed;
-  left: 2rem;
+  left: 1rem;
 }
 
 /* Desktop-nav */
@@ -90,7 +90,7 @@
 }
 
 /* Media Query: Visa hamburgermeny på små skärmar */
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   .nav-desktop {
     display: none;
   }

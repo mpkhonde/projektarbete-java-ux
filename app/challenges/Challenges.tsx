@@ -29,17 +29,19 @@ export function Challenges() {
     <main>
       <div className={styles.challengesContainer}>
         <h4>Vecka {weekNumber}</h4>
-        <h2>No spend-week</h2>
+        <h2>
+          No spend-week
+          <StickyButton
+            buttonText={"?"}
+            onClick={() => handleOpenModal("info", 0, 0)}
+          />
+        </h2>
 
         <MultiColorButtons />
         <ResultButton
           onClick={(completedDays, totalDays) =>
             handleOpenModal("result", completedDays, totalDays)
           }
-        />
-        <StickyButton
-          buttonText={"?"}
-          onClick={() => handleOpenModal("info", 0, 0)}
         />
 
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
