@@ -28,7 +28,7 @@ export function MultiColorButtons() {
   }, [colors]);
 
   function changeColor(index: number) {
-    if (index > todayIndex || isWeekend) return; // Blockera klick om det är helg eller framtida dagar
+    //if (index > todayIndex || isWeekend) return; // Blockera klick om det är helg eller framtida dagar
 
     setColors((prevColors) => {
       const newColors = [...prevColors];
@@ -52,7 +52,7 @@ export function MultiColorButtons() {
             buttonText={day}
             onClick={() => changeColor(index)} // Justera indexeringen
             style={{ backgroundColor: colors[index] }}
-            disabled={index + 1 > todayIndex || isWeekend} // Lås framtida dagar & helger
+            //disabled={index + 1 > todayIndex || isWeekend} // Lås framtida dagar & helger
             icon={LockNavy} // Skicka lock-ikonen här
           />
         ))}
