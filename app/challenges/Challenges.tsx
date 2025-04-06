@@ -26,7 +26,6 @@ export function Challenges() {
   const weekNumber = getWeekNumber()
 
   return (
-    <main>
       <div className={styles.challengesContainer}>
         <h4>Vecka {weekNumber}</h4>
         <h2>
@@ -74,6 +73,5 @@ export function Challenges() {
           )}
         </Modal>
       </div>
-    </main>
   )
 }

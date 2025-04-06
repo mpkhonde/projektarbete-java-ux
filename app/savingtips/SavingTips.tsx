@@ -44,7 +44,6 @@ export function SavingTips() {
   }, [])
 
   return (
-    <main>
       <div className={styles.savingTipsContainer}>
         {tipList.length > 1 ? (
           <CustomCard
@@ -59,6 +58,5 @@ export function SavingTips() {
           <CustomCard title="Laddar tips..." description="" id={0} />
         )}
       </div>
-    </main>
   )
 }
