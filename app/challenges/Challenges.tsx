@@ -146,10 +146,18 @@ export function Challenges() {
                 {/* Huller om buller staplade klossar */}
                 <div className={styles.chaoticStackContainer}>
                   {days.map((color, index) => {
-                    // Slumpmässig offset för huller om buller-effekt
-                    const randomOffset = Math.random() * 20 - 10; // -10 till 10px
+                    const isLast = index === days.length - 1;
+
+                    // Slumpmässig förskjutning i x-led och rotation
+                    const randomOffset = Math.random() * 40 - 20; // -20 till +20 px
                     const rotation = Math.random() * 10 - 5; // -5 till 5 grader
-                    const delay = index * 0.2 + Math.random() * 0.3; // Varierande delay
+
+                    const finalOffset = isLast
+                      ? randomOffset + 30
+                      : randomOffset;
+                    const finalRotation = isLast ? rotation + 10 : rotation / 2;
+
+                    const delay = index * 0.2 + Math.random() * 0.3;
 
                     return (
                       <motion.div
@@ -161,28 +169,29 @@ export function Challenges() {
                           x: randomOffset,
                         }}
                         animate={{
-                          y: index * -2, // Lätt staplingseffekt
+                          y: index * -2,
                           opacity: 1,
-                          rotate: 0,
-                          x: 0,
+                          rotate: finalRotation,
+                          x: finalOffset,
                         }}
                         transition={{
                           delay: delay,
                           type: "spring",
-                          stiffness: 80, // Mjukare fjäder
-                          damping: 12, // Mindre dämpning för mer studs
-                          mass: 0.8, // Tyngre känsla
-                          bounce: 0.4, // Mer studs
+                          stiffness: 80,
+                          damping: 12,
+                          mass: 0.8,
+                          bounce: 0.4,
                         }}
                         style={{
                           backgroundColor: color,
                           position: "absolute",
-                          bottom: `${index * 28}px`, // Tätare stapling
+                          bottom: `${index * 28}px`,
                           width: "50px",
                           height: "25px",
                           boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
                           borderRadius: "2px",
-                          border: "1px solid rgba(0,0,0,0.1)",
+                          border: "2px solid rgba(0,0,0,0.1)",
+                          zIndex: index, // för djup
                         }}
                       />
                     );
