@@ -44,19 +44,16 @@ export function SavingTips() {
   }, [])
 
   return (
-      <div className={styles.savingTipsContainer}>
-        {tipList.length > 1 ? (
-          <CustomCard
-            // id={todaysTip.id}
-            // title={todaysTip.title}
-            // description={todaysTip.description}
-            title={tipList[tipIndex].title}
-            description={tipList[tipIndex].description}
-            id={tipList[tipIndex].id}
-          />
-        ) : (
-          <CustomCard title="Laddar tips..." description="" id={0} />
-        )}
-      </div>
+    <div className={styles.savingTipsContainer}>
+      {tipList.length > 1 ? (
+        <CustomCard
+          title={tipList[tipIndex].title}
+          description={tipList[tipIndex].description}
+          id={tipList[tipIndex].id}
+        />
+      ) : (
+        <CustomCard title="Laddar tips..." description="" id={0} />
+      )}
+    </div>
   )
 }

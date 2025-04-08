@@ -4,9 +4,14 @@ import styles from "~/challenges/Challenges.module.css";
 import { StickyButton } from "~/components/buttons/StickyButton";
 import Modal from "~/components/modal/modal";
 import { ResultButton } from "~/components/buttons/ResultButton";
-import { loadFromLocalStorage } from "~/components/utilities/localStorageUtils";
+import {
+  loadFromLocalStorage,
+  removeFromLocalStorage,
+  saveToLocalStorage,
+} from "~/components/utilities/localStorageUtils";
 import { getWeekNumber } from "~/components/utilities/dateUtils";
 import { motion } from "motion/react";
+import type { HistoryObject } from "~/types/HistoryObject";
 
 export function Challenges() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,6 +20,13 @@ export function Challenges() {
   >("info");
   const [completedDays, setCompletedDays] = useState<number>(0);
   const [totalDays, setTotalDays] = useState<number>(0);
+  const [historyList, setHistoryList] = useState<HistoryObject[]>([
+    {
+      week: 0,
+      daysCompleted: 0,
+      daysTotal: 0,
+    },
+  ]);
 
   const handleOpenModal = (
     content: "info" | "result" | "warning" | "confirmation",
@@ -116,9 +128,35 @@ export function Challenges() {
             <div className={styles.confirmButtonContainer}>
               <button
                 className={styles.confirmButton}
-                onClick={() =>
-                  handleOpenModal("result", completedDays, totalDays)
-                }
+                onClick={() => {
+                  const colors = loadFromLocalStorage("weekColors") || [];
+
+                  const weeklyHistory: HistoryObject = {
+                    week: getWeekNumber(),
+                    daysCompleted: completedDays,
+                    daysTotal: totalDays,
+                  };
+
+                  // 👉 Hämta tidigare historik
+                  const existingHistory: HistoryObject[] =
+                    loadFromLocalStorage("history") || [];
+
+                  // 👉 Lägg till ny vecka i historiken
+                  const updatedHistoryList = [
+                    ...existingHistory,
+                    weeklyHistory,
+                  ];
+
+                  // 👉 Uppdatera state + spara i localStorage
+                  setHistoryList(updatedHistoryList);
+                  saveToLocalStorage("history", updatedHistoryList);
+
+                  // 👉 Rensa veckan om du vill börja på ny sen
+                  // removeFromLocalStorage("weekColors")
+
+                  // 👉 Visa resultat
+                  handleOpenModal("result", completedDays, totalDays);
+                }}
               >
                 Ja
               </button>
