@@ -1,121 +1,121 @@
-import { useEffect, useState } from "react";
-import { MultiColorButtons } from "~/components/buttons/MultiColorButtons";
-import styles from "~/challenges/Challenges.module.css";
-import { StickyButton } from "~/components/buttons/StickyButton";
-import Modal from "~/components/modal/modal";
-import { ResultButton } from "~/components/buttons/ResultButton";
+import { useEffect, useState } from "react"
+import { MultiColorButtons } from "~/components/buttons/MultiColorButtons"
+import styles from "~/challenges/Challenges.module.css"
+import { StickyButton } from "~/components/buttons/StickyButton"
+import Modal from "~/components/modal/modal"
+import { ResultButton } from "~/components/buttons/ResultButton"
 import {
   loadFromLocalStorage,
   removeFromLocalStorage,
   saveToLocalStorage,
-} from "~/components/utilities/localStorageUtils";
-import { getWeekNumber } from "~/components/utilities/dateUtils";
-import type { HistoryObject } from "~/types/HistoryObject";
-import ChaoticStackAnimation from "~/components/animation/ChaoticStackAnimation";
-import ConfettiAnimation from "~/components/animation/ConfettiAnimation";
+} from "~/components/utilities/localStorageUtils"
+import { getWeekNumber } from "~/components/utilities/dateUtils"
+import type { HistoryObject } from "~/types/HistoryObject"
+import ChaoticStackAnimation from "~/components/animation/ChaoticStackAnimation"
+import ConfettiAnimation from "~/components/animation/ConfettiAnimation"
 
 export function Challenges() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalContent, setModalContent] = useState<
     "info" | "result" | "warning" | "confirmation"
-  >("info");
-  const [completedDays, setCompletedDays] = useState<number>(0);
-  const [totalDays, setTotalDays] = useState<number>(0);
+  >("info")
+  const [completedDays, setCompletedDays] = useState<number>(0)
+  const [totalDays, setTotalDays] = useState<number>(0)
   const [historyList, setHistoryList] = useState<HistoryObject[]>([
     {
       week: 0,
       daysCompleted: 0,
       daysTotal: 0,
     },
-  ]);
+  ])
 
   const [weekDone, setWeekDone] = useState<boolean>(
     loadFromLocalStorage("weekDone") || false
-  );
+  )
 
-  const [resetTrigger, setResetTrigger] = useState(0);
-  const [weekColors, setWeekColors] = useState<string[]>([]);
+  const [resetTrigger, setResetTrigger] = useState(0)
+  const [weekColors, setWeekColors] = useState<string[]>([])
 
-  const todayIndex = new Date().getDay();
-  const weekNumber = getWeekNumber();
+  const todayIndex = new Date().getDay()
+  const weekNumber = getWeekNumber()
 
   useEffect(() => {
     // Återställ vecka varje måndag
     if (todayIndex === 1) {
-      setWeekDone(false);
-      saveToLocalStorage("weekDone", false);
+      setWeekDone(false)
+      saveToLocalStorage("weekDone", false)
     }
-  }, [todayIndex]);
+  }, [todayIndex])
 
   const handleOpenModal = (
     content: "info" | "result" | "warning" | "confirmation",
     completed: number,
     total: number
   ) => {
-    setModalContent(content);
-    setIsModalOpen(true);
-    setCompletedDays(completed);
-    setTotalDays(total);
-  };
+    setModalContent(content)
+    setIsModalOpen(true)
+    setCompletedDays(completed)
+    setTotalDays(total)
+  }
 
   const checkAllDaysCompleted = () => {
-    const colors = loadFromLocalStorage("weekColors") || [];
+    const colors = loadFromLocalStorage("weekColors") || []
     const allDaysCompleted = colors.every(
       (color: string) => color === "#c5fcc3" || color === "#ffa2a2"
-    );
-    return allDaysCompleted;
-  };
+    )
+    return allDaysCompleted
+  }
 
   const handleResultButtonClick = () => {
-    const colors = loadFromLocalStorage("weekColors") || [];
+    const colors = loadFromLocalStorage("weekColors") || []
     // Räkna antalet gröna (icke spenderade) eller röda (spenderade) dagar
     const completed = colors.filter(
       (color: string) => color === "#c5fcc3"
-    ).length;
-    setCompletedDays(completed);
-    const total = colors.length;
-    setTotalDays(total);
+    ).length
+    setCompletedDays(completed)
+    const total = colors.length
+    setTotalDays(total)
     if (!checkAllDaysCompleted()) {
       // Om alla dagar inte är markerade, visa varning
-      handleOpenModal("warning", completed, total);
+      handleOpenModal("warning", completed, total)
     } else {
       // Om alla dagar är markerade, visa bekräftelse
-      handleOpenModal("confirmation", completed, total);
+      handleOpenModal("confirmation", completed, total)
     }
-  };
+  }
 
   const saveHistory = () => {
     const weeklyHistory: HistoryObject = {
       week: getWeekNumber(),
       daysCompleted: completedDays,
       daysTotal: totalDays,
-    };
+    }
 
     // Hämta tidigare historik
     const existingHistory: HistoryObject[] =
-      loadFromLocalStorage("history") || [];
+      loadFromLocalStorage("history") || []
 
     // Lägg till ny vecka i historiken
-    const updatedHistoryList = [...existingHistory, weeklyHistory];
+    const updatedHistoryList = [...existingHistory, weeklyHistory]
 
     // Uppdatera state + spara i localStorage
-    setHistoryList(updatedHistoryList);
-    saveToLocalStorage("history", updatedHistoryList);
+    setHistoryList(updatedHistoryList)
+    saveToLocalStorage("history", updatedHistoryList)
 
     // ✅ Lås veckan efter resultat
     //saveToLocalStorage("weekDone", true);
     // setWeekDone(true);
 
     // ✅ Hämta weekColors innan de tas bort
-    const colors = loadFromLocalStorage("weekColors") || [];
-    setWeekColors(colors); // Spara weekColors till state
+    const colors = loadFromLocalStorage("weekColors") || []
+    setWeekColors(colors) // Spara weekColors till state
 
     // 👉 Rensa veckan om du vill börja på ny sen
-    removeFromLocalStorage("weekColors");
+    removeFromLocalStorage("weekColors")
 
     // ✅ Rensa även knapparna direkt i state
-    setResetTrigger((prev) => prev + 1);
-  };
+    setResetTrigger((prev) => prev + 1)
+  }
 
   const figmaPositions = [
     { x: 0, y: 0, rotate: 0 }, // dag 1
@@ -123,13 +123,13 @@ export function Challenges() {
     { x: 0, y: -64, rotate: 0 }, // dag 3
     { x: -5, y: -96, rotate: 0 }, // dag 4
     { x: 5, y: -130, rotate: 15 }, // dag 5
-  ];
+  ]
 
   return (
     <div className={styles.challengesContainer}>
       <h4>v.{weekNumber}</h4>
       <h2>
-        No spend week
+        No Spend Week
         <StickyButton
           buttonText={"?"}
           onClick={() => handleOpenModal("info", 0, 0)}
@@ -175,10 +175,10 @@ export function Challenges() {
               <button
                 className={styles.confirmButton}
                 onClick={() => {
-                  saveHistory();
+                  saveHistory()
 
                   // 👉 Visa resultat
-                  handleOpenModal("result", completedDays, totalDays);
+                  handleOpenModal("result", completedDays, totalDays)
                 }}
               >
                 Ja
@@ -211,5 +211,5 @@ export function Challenges() {
         )}
       </Modal>
     </div>
-  );
+  )
 }

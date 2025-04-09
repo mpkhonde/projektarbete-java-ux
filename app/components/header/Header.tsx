@@ -3,7 +3,7 @@ import logo from "../../images/BalanzaRATT.svg"
 import { useEffect, useState } from "react"
 
 // Lägg till denna!
-import { Link } from "react-router" 
+import { Link } from "react-router"
 import NavBar from "../navbar/NavBar"
 
 export function Header() {
@@ -26,10 +26,9 @@ export function Header() {
 
       <Link to="/">
         <img
+          className={styles.logo}
           src={logo}
           alt="Bild på en logotyp för Balanza"
-          height="80px"
-          width="auto"
         />
       </Link>
     </header>
