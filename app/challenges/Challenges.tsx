@@ -141,12 +141,13 @@ export function Challenges() {
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         {modalContent === "info" && (
           <div>
-            <h2>Hur funkar det? 🤔</h2>
+            <h2>Hur går det till? 🤔</h2>
             <p>Varje dag får du en ny chans att hålla dig till utmaningen:</p>
-            <p>1 tryck 🟢</p>
-            <p>- Vid två tryck blir knappen RÖD 🔴</p>
-            <p>När du gjort hela veckan kan du klicka på Resultat-knappen.</p>
-            <p>Du kan sedan gå in i Historik och se din utveckling!</p>
+            <p className={styles.bold}>1 tryck 🟢</p>
+            <p className={styles.italic}>Du klarade dagen utan att köpa något onödigt - snyggt jobbat!</p>
+            <p className={styles.bold}>2 tryck 🔴</p>
+            <p className={styles.italic}>Du råkade spendera... sånt som händer!</p>
+            <p>När du klickat i alla dagar kan du hämta resultatet!</p>
           </div>
         )}
         {modalContent === "warning" && (
@@ -168,7 +169,7 @@ export function Challenges() {
           <div>
             <h2>Är du säker på att du är klar? ✅</h2>
             <p>
-              När du klickar på 'Ja' så avslutar du denna veckas challenge och
+              När du klickar på 'Ja' avslutar du denna veckas utmaning och
               har inte möjlighet att ändra dina val.
             </p>
             <div className={styles.confirmButtonContainer}>
