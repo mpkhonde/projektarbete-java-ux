@@ -1,3 +1,7 @@
+.myResult {
+  margin-bottom: 50px;
+}
+
 .sliderWrapper {
   width: 100%;
   max-width: 500px;
@@ -10,16 +14,17 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
+  max-width: none !important;
 }
 
 .weekCard {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 0.5rem;
+  padding: 2rem 1rem 1.5rem 1rem;
   background-color: #fffdf6;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0px 4px 6px 0px rgba(255, 132, 0, 0.25);
 }
 
 .card {
@@ -29,12 +34,11 @@
   text-align: center;
 }
 
-
 .daysCompleted {
   font-weight: bold;
   margin: 0.5rem 0;
 }
 
-.myResult {
-  margin-bottom: 50px;
+.weekNumber {
+  margin-bottom: 0;
 }

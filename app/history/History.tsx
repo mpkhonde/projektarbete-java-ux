@@ -1,12 +1,12 @@
-import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
-import styles from "./History.module.css";
-import ChaoticStackAnimation from "~/components/animation/ChaoticStackAnimation";
-import { loadFromLocalStorage } from "~/components/utilities/localStorageUtils";
+import { useKeenSlider } from "keen-slider/react"
+import "keen-slider/keen-slider.min.css"
+import styles from "./History.module.css"
+import ChaoticStackAnimation from "~/components/animation/ChaoticStackAnimation"
+import { loadFromLocalStorage } from "~/components/utilities/localStorageUtils"
 
-const history = loadFromLocalStorage("history") || [];
+const history = loadFromLocalStorage("history") || []
 
-const colors = ["#12263a", "#12263a", "#12263a", "#12263a", "#12263a"];
+const colors = ["#12263a", "#12263a", "#12263a", "#12263a", "#12263a"]
 
 export function History() {
   const [sliderRef] = useKeenSlider<HTMLDivElement>({
@@ -22,11 +22,11 @@ export function History() {
         },
       },
     },
-  });
+  })
 
-  const groupedHistory = [];
+  const groupedHistory = []
   for (let i = 0; i < history.length; i += 2) {
-    groupedHistory.push(history.slice(i, i + 2));
+    groupedHistory.push(history.slice(i, i + 2))
   }
 
   return (
@@ -39,15 +39,12 @@ export function History() {
               {group.map((weekHistory: any, i: number) => (
                 <div key={i} className={styles.card}>
                   <ChaoticStackAnimation
-                    colors={(weekHistory.colors || colors).slice(
-                      0,
-                      weekHistory.daysCompleted
-                    )}
+                    colors={colors.slice(0, weekHistory.daysCompleted)}
                   />
                   <p className={styles.daysCompleted}>
                     {weekHistory.daysCompleted} av {weekHistory.daysTotal}
                   </p>
-                  <p>v.{weekHistory.week}</p>
+                  <p className={styles.weekNumber}>v.{weekHistory.week}</p>
                 </div>
               ))}
             </div>
@@ -55,5 +52,5 @@ export function History() {
         ))}
       </div>
     </div>
-  );
+  )
 }
