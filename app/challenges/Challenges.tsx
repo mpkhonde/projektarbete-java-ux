@@ -1,3 +1,6 @@
+// 🔽 FEATURE: Ny komponent för aktiviteter per dag
+import DayActivity from "~/components/DayActivity";
+
 import { useEffect, useState } from "react"
 import { MultiColorButtons } from "~/components/buttons/MultiColorButtons"
 import styles from "~/challenges/Challenges.module.css"
@@ -15,12 +18,18 @@ import ChaoticStackAnimation from "~/components/animation/ChaoticStackAnimation"
 import ConfettiAnimation from "~/components/animation/ConfettiAnimation"
 
 export function Challenges() {
+  // ────────────────────────────────────────────────
+  // 🔧 STATE: Modaler och användargränssnitt
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalContent, setModalContent] = useState<
     "info" | "result" | "warning" | "confirmation"
   >("info")
+
+  // 🔧 STATE: Resultathantering
   const [completedDays, setCompletedDays] = useState<number>(0)
   const [totalDays, setTotalDays] = useState<number>(0)
+
+  // 🔧 STATE: Historik
   const [historyList, setHistoryList] = useState<HistoryObject[]>([
     {
       week: 0,
@@ -29,24 +38,28 @@ export function Challenges() {
     },
   ])
 
+  // 🔧 STATE: Veckologik
   const [weekDone, setWeekDone] = useState<boolean>(
     loadFromLocalStorage("weekDone") || false
   )
-
   const [resetTrigger, setResetTrigger] = useState(0)
   const [weekColors, setWeekColors] = useState<string[]>([])
 
+  // 🔧 Tidsbaserat
   const todayIndex = new Date().getDay()
   const weekNumber = getWeekNumber()
 
+  // ────────────────────────────────────────────────
+  // 🔁 Effekt: Nollställ vecka varje måndag
   useEffect(() => {
-    // Återställ vecka varje måndag
     if (todayIndex === 1) {
       setWeekDone(false)
       saveToLocalStorage("weekDone", false)
     }
   }, [todayIndex])
 
+  // ────────────────────────────────────────────────
+  // 📦 Modal-hanterare
   const handleOpenModal = (
     content: "info" | "result" | "warning" | "confirmation",
     completed: number,
@@ -58,32 +71,33 @@ export function Challenges() {
     setTotalDays(total)
   }
 
+  // ✔️ Kontroll: Är alla dagar markerade?
   const checkAllDaysCompleted = () => {
     const colors = loadFromLocalStorage("weekColors") || []
-    const allDaysCompleted = colors.every(
+    return colors.every(
       (color: string) => color === "#c5fcc3" || color === "#ffa2a2"
     )
-    return allDaysCompleted
   }
 
+  // 🧮 Knapp: Visa resultat
   const handleResultButtonClick = () => {
     const colors = loadFromLocalStorage("weekColors") || []
-    // Räkna antalet gröna (icke spenderade) eller röda (spenderade) dagar
     const completed = colors.filter(
       (color: string) => color === "#c5fcc3"
     ).length
-    setCompletedDays(completed)
     const total = colors.length
+
+    setCompletedDays(completed)
     setTotalDays(total)
+
     if (!checkAllDaysCompleted()) {
-      // Om alla dagar inte är markerade, visa varning
       handleOpenModal("warning", completed, total)
     } else {
-      // Om alla dagar är markerade, visa bekräftelse
       handleOpenModal("confirmation", completed, total)
     }
   }
 
+  // 💾 Spara historik efter slutförd vecka
   const saveHistory = () => {
     const weeklyHistory: HistoryObject = {
       week: getWeekNumber(),
@@ -91,40 +105,32 @@ export function Challenges() {
       daysTotal: totalDays,
     }
 
-    // Hämta tidigare historik
     const existingHistory: HistoryObject[] =
       loadFromLocalStorage("history") || []
 
-    // Lägg till ny vecka i historiken
     const updatedHistoryList = [...existingHistory, weeklyHistory]
 
-    // Uppdatera state + spara i localStorage
     setHistoryList(updatedHistoryList)
     saveToLocalStorage("history", updatedHistoryList)
 
-    // ✅ Lås veckan efter resultat
-    //saveToLocalStorage("weekDone", true);
-    // setWeekDone(true);
-
-    // ✅ Hämta weekColors innan de tas bort
     const colors = loadFromLocalStorage("weekColors") || []
-    setWeekColors(colors) // Spara weekColors till state
+    setWeekColors(colors)
 
-    // 👉 Rensa veckan om du vill börja på ny sen
     removeFromLocalStorage("weekColors")
-
-    // ✅ Rensa även knapparna direkt i state
     setResetTrigger((prev) => prev + 1)
   }
 
+  // 📐 UI-positioner från Figma
   const figmaPositions = [
-    { x: 0, y: 0, rotate: 0 }, // dag 1
-    { x: -5, y: -32, rotate: 0 }, // dag 2
-    { x: 0, y: -64, rotate: 0 }, // dag 3
-    { x: -5, y: -96, rotate: 0 }, // dag 4
-    { x: 5, y: -130, rotate: 15 }, // dag 5
+    { x: 0, y: 0, rotate: 0 },
+    { x: -5, y: -32, rotate: 0 },
+    { x: 0, y: -64, rotate: 0 },
+    { x: -5, y: -96, rotate: 0 },
+    { x: 5, y: -130, rotate: 15 },
   ]
 
+  // ────────────────────────────────────────────────
+  // 🖥️ RENDER
   return (
     <div className={styles.challengesContainer}>
       <h4>v.{weekNumber}</h4>
@@ -138,6 +144,8 @@ export function Challenges() {
 
       <MultiColorButtons weekDone={weekDone} resetTrigger={resetTrigger} />
       <ResultButton onClick={handleResultButtonClick} disabled={weekDone} />
+
+      {/* 📦 Modal för info/resultat/varning */}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         {modalContent === "info" && (
           <div>
@@ -181,8 +189,6 @@ export function Challenges() {
                 className={styles.confirmButton}
                 onClick={() => {
                   saveHistory()
-
-                  // 👉 Visa resultat
                   handleOpenModal("result", completedDays, totalDays)
                 }}
               >
@@ -215,6 +221,9 @@ export function Challenges() {
           </div>
         )}
       </Modal>
+
+      {/* 🧩 Ny funktionell komponent för dag-aktiviteter */}
+      <DayActivity />
     </div>
   )
 }
